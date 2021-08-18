@@ -7,6 +7,8 @@ from restaurant.models import Restaurant
 from review.models import Review
 from review.serializer import ReviewSerializer
 
+from backend.restaurant.serializer import TestSerializer
+
 """
     post: 
     Create new review    
@@ -138,6 +140,17 @@ class ListLikedView(GenericAPIView):
 class ListCommentedView(GenericAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    def get(self, request):
+        queryset = self.get_queryset().filter(comment_review__user=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class TestView(GenericAPIView):
+    queryset = Review.objects.all()
+
+    serializer_class = TestSerializer(input_collection, many=True, context={'user_id': request.user.id}).data
 
     def get(self, request):
         queryset = self.get_queryset().filter(comment_review__user=request.user)

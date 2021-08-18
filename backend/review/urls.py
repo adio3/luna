@@ -11,4 +11,6 @@ urlpatterns = [
     path('likes/', ListLikedView.as_view()),
     path('comments/', ListCommentedView.as_view()),
     path('comments/', ListCommentedView.as_view()),
+    path('test/', TestView.as_view()),
+
 ]

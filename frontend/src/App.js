@@ -11,7 +11,7 @@ import Restaurant from "./Pages/Restaurant";
 import UserProfile from "./Pages/UserProfile";
 import NewReview from "./Pages/NewReview";
 import NewRestaurant from "./Pages/NewRestaurant";
-
+import Credits from "./Pages/Credits";
 
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/signup/success" component={Congratulations} />
                 <Route exact path="/signup/verification" component={Verification} />
+                <Route exact path="/eastereggs/credits" component={Credits} />
             </Switch>
         </Router>
     </div>

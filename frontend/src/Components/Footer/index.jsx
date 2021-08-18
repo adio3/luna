@@ -4,6 +4,7 @@ import twitter from "../../Assets/SVG/twitter.svg"
 import googleplus from "../../Assets/SVG/googleplus.svg"
 import instagram from "../../Assets/SVG/instagram.svg"
 import { v4 as uuidv4 } from 'uuid';
+import {useHistory} from "react-router-dom";
 
 
 const FooterMain = styled.div`
@@ -74,11 +75,16 @@ color: ${props => props.theme.textGrey};
 `
 
 const Footer = () => {
+    const history = useHistory()
+    const toCredits = (event) => {
+        event.preventDefault();
+        history.push(`/eastereggs/credits`)
+    }
     return (
     <FooterMain>
         <FooterTop>
             <NavSection>
-                <FooterNav>About</FooterNav>
+                <FooterNav onClick={toCredits}>About</FooterNav>
                 <FooterNav>Press</FooterNav>
                 <FooterNav>Blog</FooterNav>
                 <FooterNav>iOS</FooterNav>

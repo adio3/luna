@@ -30,3 +30,17 @@ class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['country']
+
+class TestSerializer(serializers.ModelSerializer):
+    country = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_country(instance):
+        countries_list = []
+        for code, name in list(countries):
+            countries_list.append({code: name})
+        return countries_list
+
+    class Meta:
+        model = Restaurant
+        fields = ['country']

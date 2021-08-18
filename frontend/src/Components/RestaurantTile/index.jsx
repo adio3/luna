@@ -10,6 +10,7 @@ display: flex;
 position: relative;
 flex-direction: column;
 background-color: ${props => props.theme.backgroundWhite};
+
 `
 const TopBorder = styled.div`
 height: 8px;
@@ -46,7 +47,10 @@ const RestImg = styled.img`
 position: absolute;
 bottom: 0px;
 width: 100%;
+height: 288px;
 border-radius: 0px 0px 3px 3px;
+object-fit: cover;
+object-position: center top;
 `
 
 const RestaurantTile = ({ data }) => {
