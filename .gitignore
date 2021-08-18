@@ -1,5 +1,32 @@
 .idea
-.DS_Store
 __pycache__
 *.pyc
-node_modules
+# excluding files in migrations folders
+**/migrations/*
+# re-including __init__.py files in migrations folders
+!**/migrations/__init__.py
+# ignore because of secretkey
+settings.py
+/envs
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

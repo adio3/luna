@@ -13,9 +13,35 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework_simplejwt import views as jwt_views
+
+from settings.view import SearchReviewRestaurantUser
+
+jwt_views = [
+    # Your URLs...
+    path('', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
+]
+
+api_patterns = [
+    path('restaurants/', include('restaurant.urls')),
+    path('review/comment/', include('comment.urls')),
+    path('auth/token/', include(jwt_views)),
+    path('reviews/', include('review.urls')),
+    path('search/', SearchReviewRestaurantUser.as_view()),
+    path('', include('user.urls')),
+    path('auth/registration/', include('reg_profile.urls')),
+]
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
+    path('backend/api/', include(api_patterns)),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

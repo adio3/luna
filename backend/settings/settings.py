@@ -48,9 +48,16 @@ INSTALLED_APPS = [
     # Apps
     'rest_framework',
     'corsheaders',
+    # Our apps
+    'user',
+    'review',
+    'reg_profile',
+    'restaurant',
+    'comment'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -150,7 +157,7 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'user.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
